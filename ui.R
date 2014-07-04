@@ -1,26 +1,22 @@
 library(shiny)
 library(ggplot2)
 
-dataset <- diamonds
-
 shinyUI(pageWithSidebar(
         
-        headerPanel("Diamonds Explorer"),
+        headerPanel("GPAT"),
         
         sidebarPanel(
-                
-                sliderInput('sampleSize', 'Sample Size', min=1, max=nrow(dataset),
-                            value=min(1000, nrow(dataset)), step=500, round=0),
-                
-                selectInput('x', 'X', names(dataset)),
-                selectInput('y', 'Y', names(dataset), names(dataset)[[2]]),
-                selectInput('color', 'Color', c('None', names(dataset))),
-                
-                checkboxInput('jitter', 'Jitter'),
-                checkboxInput('smooth', 'Smooth'),
-                
-                selectInput('facet_row', 'Facet Row', c(None='.', names(dataset))),
-                selectInput('facet_col', 'Facet Column', c(None='.', names(dataset)))
+                               
+                sliderInput("accuracy", "Accuracy", min=1, max=10, value=1),
+                sliderInput("agility", "Agility", min=1, max=10, value=1),
+                sliderInput("balance", "Balance", min=1, max=10, value=1),
+                sliderInput("coordination", "Coordination", min=1, max=10, value=1),
+                sliderInput("endurance", "Endurance", min=1, max=10, value=1),
+                sliderInput("flexibility", "Flexibility", min=1, max=10, value=1),
+                sliderInput("power", "Power", min=1, max=10, value=1),            
+                sliderInput("speed", "Speed", min=1, max=10, value=1),
+                sliderInput("stamina", "Stamina", min=1, max=10, value=1),
+                sliderInput("strength", "Strength", min=1, max=10, value=1)
         ),
         
         mainPanel(
