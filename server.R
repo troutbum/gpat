@@ -13,7 +13,7 @@ shinyServer(function(input, output) {
         
         output$plot <- reactivePlot(function() {
                 
-                data.frame(
+                datasetInput <- data.frame(
                         Name = c("Accuracy",
                                  "Agility",
                                  "Balance",
@@ -33,10 +33,9 @@ shinyServer(function(input, output) {
                                   input$power,        
                                   input$stamina,
                                   input$strength,
-                                  input$speed), stringsAsFactors=FALSE),
- #       }) 
+                                  input$speed), stringsAsFactors=FALSE)               
                 
-                p <- ggplot(testdata, aes(Name, Value, fill = factor(Value))) + 
+                p <- ggplot(datasetInput, aes(Name, Value, fill = factor(Value))) + 
                         geom_bar(stat="identity") + 
                         coord_polar() +
                         theme(legend.position="none") +
@@ -48,4 +47,6 @@ shinyServer(function(input, output) {
                         theme(plot.title = element_text(size = rel(2), face="bold"))
                 print(p)
                 
-        }, height=700)
+                })
+        height=700
+        })
