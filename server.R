@@ -8,10 +8,9 @@ palette1 <- colorRampPalette(colors1)
 colors2 <- brewer.pal(9, "YlOrRd")
 palette2 <- colorRampPalette
 
-
 shinyServer(function(input, output) {
         
-        output$plot <- reactivePlot(function() {
+        output$plot <- renderPlot({
                 
                 datasetInput <- data.frame(
                         Name = c("Accuracy",
@@ -39,10 +38,10 @@ shinyServer(function(input, output) {
                         geom_bar(stat="identity") + 
                         coord_polar() +
                         theme(legend.position="none") +
-                        labs(x="June 26, 2014") + 
+                        labs(x=format(input$date, format="%A %B %d, %Y")) + 
                         labs(y="") + 
                         scale_y_continuous(limits=c(0,10)) +
-                        labs(title="10 Attributes of Fitness Test Results") +     
+                        labs(title="") +     
                         scale_fill_manual(values=palette1(10)) +
                         theme(plot.title = element_text(size = rel(2), face="bold"))
                 print(p)

@@ -3,10 +3,10 @@ library(ggplot2)
 
 shinyUI(pageWithSidebar(
         
-        headerPanel("GPAT"),
+        headerPanel("GPAT - General Physical Attributes Test"),
         
         sidebarPanel(
-                               
+                dateInput("date", "Test Date:"),               
                 sliderInput("accuracy", "Accuracy", min=1, max=10, value=1),
                 sliderInput("agility", "Agility", min=1, max=10, value=1),
                 sliderInput("balance", "Balance", min=1, max=10, value=1),
@@ -20,6 +20,7 @@ shinyUI(pageWithSidebar(
         ),
         
         mainPanel(
-                plotOutput('plot')
+                
+                plotOutput('plot')          
         )
 ))
