@@ -55,8 +55,8 @@ shinyServer(function(input, output) {
                         labs(title="") +     
                         scale_fill_manual(values=palette1(10)) +
                         theme(plot.title = element_text(size = rel(2), face="bold"))
-                #print(p)
                 
+                # plot inverse (what to work on)
                 todoplot <- ggplot(todo, aes(Name, Value, fill = factor(Value))) + 
                         geom_bar(stat="identity") + 
                         coord_polar() +
@@ -67,10 +67,9 @@ shinyServer(function(input, output) {
                         labs(title="") +     
                         scale_fill_manual(values=palette2(10)) +
                         theme(plot.title = element_text(size = rel(2), face="bold"))
-                #print(todoplot)
                 
-                source('~/CourseraHW/R_functions/multiplot.R')
-                print(multiplot(p, todoplot, cols=2))
+                #source('~/CourseraHW/R_functions/multiplot.R')
+                print(multiplot(p, todoplot, cols=2))           # place function code in global.R 
                 
                 })
         height=700
