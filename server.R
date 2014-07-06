@@ -1,8 +1,12 @@
 library(shiny)
 library(ggplot2)
-
+library(grid)
+library(gridExtra)
 library(datasets)
 library(RColorBrewer)
+library(wordcloud)
+library(tm)
+
 colors1 <- brewer.pal(9, "Greens")
 palette1 <- colorRampPalette(colors1)
 colors2 <- brewer.pal(9, "YlOrRd")
@@ -68,8 +72,22 @@ shinyServer(function(input, output) {
                         scale_fill_manual(values=palette2(10)) +
                         theme(plot.title = element_text(size = rel(2), face="bold"))
                 
+                pcloud <- wordcloud(datasetInput$Name, datasetInput$Value, scale=c(3,.5), max.words=100, random.order=TRUE, random.color=FALSE,
+                          rot.per=0.5, use.r.layout=FALSE, colors=rainbow(10))
+                
+                tcloud <- wordcloud(datasetInput$Name, datasetInput$Value, scale=c(3,.5), max.words=100, random.order=TRUE, random.color=FALSE,
+                                    rot.per=0.5, use.r.layout=FALSE, colors=rainbow(10))
+                
                 #source('~/CourseraHW/R_functions/multiplot.R')
-                print(multiplot(p, todoplot, cols=2))           # place function code in global.R 
+                # multiplot function in global.R
+                # print(multiplot(p, todoplot, pcloud, tcloud, cols=1, ncol = 2, nrow = 2))
+                # print(multiplot(p, todoplot, pcloud, tcloud, cols=2))
+                print(multiplot(p, todoplot, cols=2))
+                
+#                 layout <- matrix(c(1, 2, 3, 4), nrow = 1, byrow = TRUE)
+#                 print(multiplot(p, todoplot, pcloud, tcloud, layout = layout))
+
+                # grid.arrange(p, todoplot, pcloud, tcloud, ncol = 2)
                 
                 })
         height=700
