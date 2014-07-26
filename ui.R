@@ -21,6 +21,12 @@ shinyUI(pageWithSidebar(
         
         mainPanel(
                 
-                plotOutput('plot')          
+                #plotOutput('plot2') 
+                tabsetPanel(type = "tabs", 
+                            tabPanel("Plotted Results", plotOutput("plot")),
+                            tabPanel("Strengths & Weaknesses", plotOutput("wordcloud")),
+                            tabPanel("To Do List", plotOutput("plot2")),
+                            tabPanel("Words to Train By", plotOutput("wordcloud2"))
+                )
         )
 ))
